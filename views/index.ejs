@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🔗 URL Shortener</h1>
+
+        <form class="shortener-form" action="/shorten" method="post">
+            <label for="fullurl">Enter Long URL</label>
+            <input type="url" id="fullurl" name="fullurl" placeholder="https://example.com" required>
+
+            <label for="shortcode">Custom Short Code</label>
+            <input type="text" id="shortcode" name="shortcode" placeholder="e.g. mylink" required>
+
+            <button type="submit">Shorten URL</button>
+        </form>
+
+        <!-- Shortened URLs List -->
+        <div class="result">
+            <h2>Shortened Links</h2>
+
+            <ul>
+                <%if(Urls.length===0){ %>
+                    <li>
+                        not URL item inserted
+                    </li>
+                    <% } %>
+
+                        <% Urls.forEach(url=> {%>
+                            <li>
+                                <a href="/<%= url.shortcode%>" target="_blank">
+                                    http://localhost:3000/<%= url.shortcode %>
+                                </a>
+                                <span>(Clicks: <%= url.clicks %>)</span>
+                            </li>
+                            <% }) %>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
